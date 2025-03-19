@@ -11,6 +11,12 @@ class Game {
   void startGame() {}
   void battle() {}
   void getRandomMonster() {}
+  int itemattack(Character character) {
+    int items = 0;
+    character.attack * 2;
+
+    return items;
+  }
 
   int bonusHealth(Character character) {
     Random random = Random();

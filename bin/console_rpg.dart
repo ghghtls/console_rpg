@@ -42,26 +42,42 @@ void main() {
       '${game.monsters[i].monsterName} - 체력: ${game.monsters[i].monsterHp},공격력:${game.monsters[i].max}',
      );
  }*/
-  // ✅ 보너스 체력 지급 시도
+  // 보너스 체력 지급 시도
 
   int bonus = game.bonusHealth(game.character);
   bool isWin = true; // 전역으로 먼저 선언
+  bool itemActive = false; //  이번 턴에만 발동할지 체크
   while (true) {
     print('$characterName의 턴');
-    print('행동을 선택하세요(1: 공격, 2: 방어):');
+    print('행동을 선택하세요(1: 공격, 2: 방어, 3:아이템 사용)');
     String? number = stdin.readLineSync();
 
     if (number == '1') {
+      int realAttack = game.character.attack;
+      if (itemActive) {
+        realAttack *= 2; // 한 턴 동안 공격력 2배
+        itemActive = false; // 턴 종료 후 효과 사라짐
+      }
+
       print(
-        '$characterName이(가) ${randomMonster.monsterName}에게 ${game.character.attack}의 데미지를 입혔습니다.',
+        '$characterName이(가) ${randomMonster.monsterName}에게 $realAttack의 데미지를 입혔습니다.',
       );
-      randomMonster.monsterHp -= game.character.attack; // 몬스터 체력 깎기
+      randomMonster.monsterHp -= realAttack;
     } else if (number == '2') {
       print('$characterName이(가) 방어 태세를 취하여 $bonus 만큼 체력을 얻었습니다.');
-      game.character.hp += bonus; // 체력 회복
+      game.character.hp += bonus;
+    } else if (number == '3') {
+      //  캐릭터가 기억하고 있는 itemUsed 체크
+      if (!game.character.itemUsed) {
+        print('$characterName이(가) 한 턴 동안 공격력 두 배 아이템을 사용했습니다.');
+        itemActive = true;
+        game.character.itemUsed = true; // 캐릭터가 사용 처리
+      } else {
+        print('아이템은 이미 사용했습니다.');
+      }
     } else {
       print('잘못 입력했습니다.');
-      continue; // 다시 선택하도록 루프 처음으로 이동
+      continue;
     }
 
     /// 몬스터 체력 체크
