@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:console_rpg/monster.dart';
+import 'dart:math';
 
 class Character {
   String name;

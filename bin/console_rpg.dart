@@ -23,6 +23,7 @@ void main() {
 
   //로드 기능 몬스터.txt 파일에 몇마리 있는지 로드 기능
   print("몬스터 ${game.monsters.length}마리 로드 완료");
+
   // 랜덤 인덱스 뽑기
   Random random = Random();
   int randomIndex = random.nextInt(game.monsters.length);
@@ -32,12 +33,20 @@ void main() {
   print(
     '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
   );
-  // print("새로운 몬스터가 나타났습니다");
-  // for (int i = 0; i < game.monsters.length; i++) {
-  //   print(
-  //     '${game.monsters[i].monsterName} - 체력: ${game.monsters[i].monsterHp},공격력:${game.monsters[i].max}',
-  //   );
-  // }
+  /* print("새로운 몬스터가 나타났습니다");
+   for (int i = 0; i < game.monsters.length; i++) {
+     print(
+      '${game.monsters[i].monsterName} - 체력: ${game.monsters[i].monsterHp},공격력:${game.monsters[i].max}',
+     );
+ }*/
+  print('$characterName의 턴');
+  print('행동을 선택하세요(1: 공격, 2: 방어):');
+
+  print('${randomMonster.monsterName}의 턴');
+
+  // ✅ 보너스 체력 지급 시도
+
+  game.bonusHealth(game.character);
 
   bool isWin = true; // 또는 false로 패배 시뮬레이션
 

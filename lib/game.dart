@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:console_rpg/character.dart';
 import 'package:console_rpg/monster.dart';
 
@@ -10,6 +11,16 @@ class Game {
   void startGame() {}
   void battle() {}
   void getRandomMonster() {}
+  void bonusHealth(Character character) {
+    Random random = Random();
+    double chance = random.nextDouble(); // 0.0 ~ 1.0 사이 랜덤 실수
+
+    if (chance < 0.3) {
+      // 30% 확률
+      character.hp += 10;
+      print('보너스 체력을 얻었습니다! 현재 체력: ${character.hp}');
+    }
+  }
 
   void loadAllMonsters() {
     try {
