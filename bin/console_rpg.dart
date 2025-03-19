@@ -47,7 +47,9 @@ void main() {
   int bonus = game.bonusHealth(game.character);
   bool isWin = true; // 전역으로 먼저 선언
   bool itemActive = false; //  이번 턴에만 발동할지 체크
+  int turnCounter = 0; // 턴 카운트용
   while (true) {
+    turnCounter++; // 매 턴 증가
     print('$characterName의 턴');
     print('행동을 선택하세요(1: 공격, 2: 방어, 3:아이템 사용)');
     String? number = stdin.readLineSync();
@@ -58,11 +60,18 @@ void main() {
         realAttack *= 2; // 한 턴 동안 공격력 2배
         itemActive = false; // 턴 종료 후 효과 사라짐
       }
+      // 몬스터 방어력 고려한 최종 데미지 계산
+      int damage = realAttack - randomMonster.monsterDefense;
+      if (damage < 0) damage = 0; // 방어력이 공격보다 높으면 0
+      randomMonster.monsterHp -= damage;
 
       print(
-        '$characterName이(가) ${randomMonster.monsterName}에게 $realAttack의 데미지를 입혔습니다.',
+        '$characterName이(가) ${randomMonster.monsterName}에게 $damage의 데미지를 입혔습니다.',
       );
-      randomMonster.monsterHp -= realAttack;
+      // 3턴마다 몬스터 방어력 증가
+      if (turnCounter % 3 == 0) {
+        randomMonster.increaseDefense();
+      }
     } else if (number == '2') {
       print('$characterName이(가) 방어 태세를 취하여 $bonus 만큼 체력을 얻었습니다.');
       game.character.hp += bonus;

@@ -12,6 +12,10 @@ class Monster {
     this.max = 0,
     this.monsterDefense = 0,
   });
+  void increaseDefense() {
+    monsterDefense += 2;
+    print('$monsterName의 방어력이 증가했습니다! 현재 방어력: $monsterDefense');
+  }
 
   void attackCharacter(Character character) {}
 }
