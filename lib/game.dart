@@ -11,15 +11,17 @@ class Game {
   void startGame() {}
   void battle() {}
   void getRandomMonster() {}
-  void bonusHealth(Character character) {
+
+  int bonusHealth(Character character) {
     Random random = Random();
     double chance = random.nextDouble(); // 0.0 ~ 1.0 사이 랜덤 실수
-
+    int bonus = 0; // 기본 0으로 시작
     if (chance < 0.3) {
       // 30% 확률
-      character.hp += 10;
-      print('보너스 체력을 얻었습니다! 현재 체력: ${character.hp}');
+      bonus = Random().nextInt(11); // 0~10 사이 랜덤 보너스 체력
+      character.hp += bonus;
     }
+    return bonus; // 랜덤으로 증가한 실제 값 or 0
   }
 
   void loadAllMonsters() {
