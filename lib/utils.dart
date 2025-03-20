@@ -1,6 +1,62 @@
 import 'dart:convert';
 import 'dart:io';
 
+class AsciiArt {
+  static void hero() {
+    print('''
+    O
+   /|\\
+  / | \\
+ /  |  \\
+    |
+   / \\
+  /   \\
+[Hero - The Brave Swordsman]
+''');
+  }
+
+  static void batman() {
+    print('''
+   /~~~~~\\
+  /       \\
+ (  O   O  )
+  \\  ~~~  /
+   \\_____/
+  /|     |\\
+ /_|_____|_\\
+
+''');
+  }
+
+  static void spiderman() {
+    print('''
+    .-"""-.
+   / -   - \\
+  |  o _ o  |
+  |   (_)   |
+   \\  ---  /
+    '-._.-'
+     /| |\\
+    /_|_|_\\
+
+''');
+  }
+
+  static void superman() {
+    print('''
+     _____
+    /     \\
+   |  O O  |
+   |   ^   |
+   |  '-'  |
+   |_______|
+    /| |\\
+   /_|_|_\\
+
+''');
+  }
+}
+
 /// 사용자로부터 캐릭터 이름 입력받는 기능 (정규식 포함)
 String inputCharacterName() {
   String inputName;
@@ -24,6 +80,7 @@ String inputCharacterName() {
         continue;
       }
       print('게임을 시작합니다');
+      AsciiArt.hero();
       break;
     }
     return inputName;

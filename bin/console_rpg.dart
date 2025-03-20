@@ -8,6 +8,7 @@ import 'dart:math';
 
 ///dart run
 void main() {
+  ///List<String> monsters = ['batman', 'spiderman', 'superman'];
   Game game = Game();
   //  사용자로부터 캐릭터 이름 입력
   String characterName = inputCharacterName();
@@ -33,6 +34,20 @@ void main() {
 
   // 랜덤 몬스터 출력
   var randomMonster = game.monsters[randomIndex];
+  // 몬스터 이름에 맞춰 이미지 출력
+  switch (randomMonster.monsterName.trim().toLowerCase()) {
+    case 'batman':
+      AsciiArt.batman();
+      break;
+    case 'spiderman':
+      AsciiArt.spiderman();
+      break;
+    case 'superman':
+      AsciiArt.superman();
+      break;
+    default:
+      print('이미지 준비 안 된 몬스터입니다');
+  }
   print(
     '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
   );
@@ -111,6 +126,19 @@ void main() {
         // 남아있는 몬스터 중 랜덤 소환
         randomMonster = game.monsters[Random().nextInt(game.monsters.length)];
         print('새로운 몬스터가 나타났습니다');
+        switch (randomMonster.monsterName.trim().toLowerCase()) {
+          case 'batman':
+            AsciiArt.batman();
+            break;
+          case 'spiderman':
+            AsciiArt.spiderman();
+            break;
+          case 'superman':
+            AsciiArt.superman();
+            break;
+          default:
+            print('이미지 준비 안 된 몬스터입니다');
+        }
         print(
           '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
         );
