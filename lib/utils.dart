@@ -62,12 +62,16 @@ String inputCharacterName() {
   String inputName;
 
   while (true) {
-    // 수정: '가-힣' 은 완성형 한글이긴 하나, 터미널 한글 입력 깨짐 방지용으로 utf8 읽기 권장
-    RegExp nameRegExp = RegExp(r'^[\uAC00-\uD7A3a-zA-Z]+$'); // ✅ 유니코드 한글 범위로 수정
+    /// 수정: '가-힣' 은 완성형 한글이긴 하나, 터미널 한글 입력 깨짐 방지용으로 utf8 읽기 권장
+    RegExp nameRegExp = RegExp(r'^[\uAC00-\uD7A3a-zA-Z]+$');
+
+    /// ✅ 유니코드 한글 범위로 수정
 
     while (true) {
       stdout.write("캐릭터 이름을 입력하세요 (한글/영문만 허용): ");
-      inputName = stdin.readLineSync(encoding: utf8)!.trim(); // ✅ utf8로 읽기 추가
+      inputName = stdin.readLineSync(encoding: utf8)!.trim();
+
+      /// ✅ utf8로 읽기 추가
       print(inputName);
 
       if (inputName.isEmpty) {

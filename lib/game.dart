@@ -5,8 +5,12 @@ import 'package:console_rpg/monster.dart';
 import 'package:console_rpg/utils.dart';
 
 class Game {
-  Character character = Character(); // 캐릭터 객체 생성
-  List<Monster> monsters = []; //몬스터 객체 생성
+  Character character = Character();
+
+  /// 캐릭터 객체 생성
+  List<Monster> monsters = [];
+
+  ///몬스터 객체 생성
   int downNumber = 0;
 
   void startGame() {}
@@ -71,7 +75,7 @@ print('새로운 몬스터가 나타났습니다');
         continue;
       }
 
-      // 몬스터 죽었는지 체크
+      /// 몬스터 죽었는지 체크
       if (randomMonster.monsterHp <= 0) {
         print('${randomMonster.monsterName}을(를) 물리쳤습니다.');
         monsters.remove(randomMonster);
@@ -100,7 +104,7 @@ print('새로운 몬스터가 나타났습니다');
         }
       }
 
-      // 몬스터 공격 턴
+      /// 몬스터 공격 턴
       print('${randomMonster.monsterName}의 턴');
       print(
         '${randomMonster.monsterName}이(가) ${character.name}에게 ${randomMonster.max}의 데미지를 입혔습니다.',
@@ -121,7 +125,9 @@ print('새로운 몬스터가 나타났습니다');
     Random random = Random();
     int randomIndex = random.nextInt(monsters.length);
     Monster randomMonster = monsters[randomIndex];
-    randomMonster.printAscii(); // monster.dart에 넣은 메서드
+    randomMonster.printAscii();
+
+    /// monster.dart에 넣은 메서드
     print(
       '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
     );
@@ -129,14 +135,22 @@ print('새로운 몬스터가 나타났습니다');
 
   int bonusHealth(Character character) {
     Random random = Random();
-    double chance = random.nextDouble(); // 0.0 ~ 1.0 사이 랜덤 실수
-    int bonus = 0; // 기본 0으로 시작
+    double chance = random.nextDouble();
+
+    /// 0.0 ~ 1.0 사이 랜덤 실수
+    int bonus = 0;
+
+    /// 기본 0으로 시작
     if (chance < 0.3) {
-      // 30% 확률
-      bonus = Random().nextInt(11); // 0~10 사이 랜덤 보너스 체력
+      /// 30% 확률
+      bonus = Random().nextInt(11);
+
+      /// 0~10 사이 랜덤 보너스 체력
       character.hp += bonus;
     }
-    return bonus; // 랜덤으로 증가한 실제 값 or 0
+    return bonus;
+
+    /// 랜덤으로 증가한 실제 값 or 0
   }
 
   void loadAllMonsters() {
