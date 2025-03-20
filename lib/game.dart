@@ -38,9 +38,19 @@ print('새로운 몬스터가 나타났습니다');
       '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
     );*/
     Monster randomMonster = monsters[Random().nextInt(monsters.length)];
+
+    ///캐릭터의 체력 증가 기능 추가
+    if (bonus > 0) {
+      print('${character.name}가 보너스 체력을 얻었습니다! 현재 체력: ${character.hp}');
+      character.hp += bonus;
+    } else {
+      print('${character.name}가 보너스 체력을 못얻었습니다! 현재 체력: ${character.hp}');
+    }
+
     while (true) {
       turnCounter++;
       print('${character.name}의 턴');
+
       print('행동을 선택하세요(1: 공격, 2: 방어, 3:아이템 사용)');
       String? number = stdin.readLineSync();
 
@@ -60,6 +70,7 @@ print('새로운 몬스터가 나타났습니다');
 
         if (turnCounter % 3 == 0) randomMonster.increaseDefense();
       } else if (number == '2') {
+        ///방어를 했을때 30% 확률로 체력 증가 기능
         print('${character.name}이(가) 방어 태세를 취하여 $bonus 만큼 체력을 얻었습니다.');
         character.hp += bonus;
       } else if (number == '3') {
