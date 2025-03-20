@@ -101,7 +101,11 @@ void saveResult(bool isWin, dynamic character) {
 
     try {
       final file = File('assets/result.txt');
-      file.writeAsStringSync(content);
+
+      /// 기존 파일 내용을 유지하고, 새 결과(content)를 파일 끝에 추가 저장합니다.
+      file.writeAsStringSync(content, mode: FileMode.append);
+
+      ///file.writeAsStringSync(content);
       print("결과가 'result.txt' 파일에 저장되었습니다.");
     } catch (e) {
       print("결과 저장 중 오류 발생: $e");
