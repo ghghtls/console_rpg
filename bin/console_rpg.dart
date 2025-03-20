@@ -16,7 +16,7 @@ void main() {
   game.character.loadCharacterStats();
 
   game.loadAllMonsters();
-  //불러오려면 객체를 통해 불러와야한다. 객체가 지금 게임 클래스에 있다.
+
   print(
     "'$characterName' - 체력: '${game.character.hp}', 공격력: '${game.character.attack}', 방어력: '${game.character.defense}'",
   );
