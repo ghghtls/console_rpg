@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:console_rpg/monster.dart';
 
 class Character {
   String name;
@@ -10,10 +9,6 @@ class Character {
 
   /// 아이템 사용 여부 저장용 변수 추가
   Character({this.name = "", this.hp = 0, this.attack = 0, this.defense = 0});
-
-  void attackMonster(Monster monster) {}
-
-  void defend() {}
 
   void loadCharacterStats() {
     try {

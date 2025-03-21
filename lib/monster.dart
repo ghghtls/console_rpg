@@ -1,4 +1,3 @@
-import 'package:console_rpg/character.dart';
 import 'package:console_rpg/utils.dart';
 
 class Monster {
@@ -33,6 +32,4 @@ class Monster {
         print('이미지 준비 안 된 몬스터입니다');
     }
   }
-
-  void attackCharacter(Character character) {}
 }
