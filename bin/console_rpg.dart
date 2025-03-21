@@ -24,6 +24,6 @@ void main() {
   ///로드 기능 몬스터.txt 파일에 몇마리 있는지 로드 기능
   print("몬스터 ${game.monsters.length}마리 로드 완료");
 
-  game.showRandomMonster();
+  /// game.showRandomMonster();
   game.battle();
 }

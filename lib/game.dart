@@ -13,33 +13,21 @@ class Game {
   ///몬스터 객체 생성
   int downNumber = 0;
 
-  void startGame() {}
+  ///등장 몬스터와 배틀 안맞는 부분 수정정
   void battle() {
     int bonus = bonusHealth(character);
     bool isWin = true;
     bool itemActive = false;
     int turnCounter = 0;
 
-    /*
-print('새로운 몬스터가 나타났습니다');
-    Random random = Random();
-    int randomIndex = random.nextInt(monsters.length);
-    Monster randomMonster = monsters[randomIndex];
-    randomMonster.printAscii(); // monster.dart에 넣은 메서드
+    Monster randomMonster = monsters[Random().nextInt(monsters.length)];
+    print('새로운 몬스터가 나타났습니다!');
+    randomMonster.printAscii();
     print(
       '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
     );
-*/
-    /* // 랜덤 첫 몬스터 소환
-    Monster randomMonster = monsters[Random().nextInt(monsters.length)];
-    randomMonster.printAscii();
 
-    print(
-      '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
-    );*/
-    Monster randomMonster = monsters[Random().nextInt(monsters.length)];
-
-    ///캐릭터의 체력 증가 기능 추가
+    // 캐릭터 보너스
     if (bonus > 0) {
       print('${character.name}가 보너스 체력을 얻었습니다! 현재 체력: ${character.hp}');
       character.hp += bonus;
@@ -50,7 +38,6 @@ print('새로운 몬스터가 나타났습니다');
     while (true) {
       turnCounter++;
       print('${character.name}의 턴');
-
       print('행동을 선택하세요(1: 공격, 2: 방어, 3:아이템 사용)');
       String? number = stdin.readLineSync();
 
@@ -70,7 +57,6 @@ print('새로운 몬스터가 나타났습니다');
 
         if (turnCounter % 3 == 0) randomMonster.increaseDefense();
       } else if (number == '2') {
-        ///방어를 했을때 30% 확률로 체력 증가 기능
         print('${character.name}이(가) 방어 태세를 취하여 $bonus 만큼 체력을 얻었습니다.');
         character.hp += bonus;
       } else if (number == '3') {
@@ -86,7 +72,7 @@ print('새로운 몬스터가 나타났습니다');
         continue;
       }
 
-      /// 몬스터 죽었는지 체크
+      // 몬스터 죽음 처리
       if (randomMonster.monsterHp <= 0) {
         print('${randomMonster.monsterName}을(를) 물리쳤습니다.');
         monsters.remove(randomMonster);
@@ -98,11 +84,12 @@ print('새로운 몬스터가 나타났습니다');
           break;
         }
 
+        // 다음 몬스터 선택 여부
         print('다음 몬스터와 싸우시겠습니까? (y/n)');
         String? answer = stdin.readLineSync();
         if (answer == 'y' || answer == 'Y') {
           randomMonster = monsters[Random().nextInt(monsters.length)];
-          print('새로운 몬스터가 나타났습니다');
+          print('새로운 몬스터가 나타났습니다!');
           randomMonster.printAscii();
           print(
             '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
@@ -115,7 +102,7 @@ print('새로운 몬스터가 나타났습니다');
         }
       }
 
-      /// 몬스터 공격 턴
+      // 몬스터 턴
       print('${randomMonster.monsterName}의 턴');
       print(
         '${randomMonster.monsterName}이(가) ${character.name}에게 ${randomMonster.max}의 데미지를 입혔습니다.',
@@ -131,7 +118,7 @@ print('새로운 몬스터가 나타났습니다');
     }
   }
 
-  void showRandomMonster() {
+  /* void showRandomMonster() {
     print('새로운 몬스터가 나타났습니다');
     Random random = Random();
     int randomIndex = random.nextInt(monsters.length);
@@ -142,7 +129,7 @@ print('새로운 몬스터가 나타났습니다');
     print(
       '${randomMonster.monsterName} - 체력: ${randomMonster.monsterHp}, 공격력: ${randomMonster.max}',
     );
-  }
+  }*/
 
   int bonusHealth(Character character) {
     Random random = Random();
